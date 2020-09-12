@@ -5,8 +5,8 @@ A Rust bot to play Hanabi on Discord
 
 - `main.rs` : Entry point, where all commands are defined
 - `table.rs` : The creation/deletion/list of active tables, allowing to join a game
-- `hanabi.rs` : A game of Hanabi
+- `hanabi.rs` : A game of Hanabi, with the different phases
     - `hanabi/player.rs` : A player of Hanabi
     - `hanabi/hand.rs` : The hands of the players
-    - `hanabi/stack.rs` : The color stacks on the table
+    - `hanabi/playground.rs` : The table where players play. With the color stacks
     - `hanabi/card.rs` : A card, with color and information
