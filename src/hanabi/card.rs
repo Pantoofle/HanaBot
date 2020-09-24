@@ -1,6 +1,6 @@
 use strum_macros::EnumIter;
 
-#[derive(EnumIter, PartialEq, Eq, Hash)]
+#[derive(Clone, Copy, EnumIter, PartialEq, Eq, Hash, Debug)]
 pub enum Color{
     Red,
     Blue,
@@ -10,6 +10,7 @@ pub enum Color{
     All,
 }
 
+#[derive(Clone, Copy)]
 pub enum Hint{
     Color(Color),
     Value(u8),
@@ -25,6 +26,7 @@ impl Hint{
     }
 }
 
+#[derive(Clone, Copy)]
 pub struct Card{
     pub value: u8,
     pub color: Color,

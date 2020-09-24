@@ -8,7 +8,7 @@ struct Stack{
     value : u8,
 }
 
-struct Playground{
+pub struct Playground{
     color_stacks : HashMap<card::Color, Stack>,
     hint_tokens : u8,
     error_tokens : u8,
@@ -18,7 +18,7 @@ struct Playground{
 
 impl Playground{
     pub fn new() -> Playground{
-        let p = Playground{
+        let mut p = Playground{
             color_stacks : HashMap::new(),
             hint_tokens : 8,
             error_tokens : 3,
@@ -28,11 +28,15 @@ impl Playground{
 
         // Generate the different color stacks
         for c in card::Color::iter(){
-            p.color_stacks.insert(c, Stack{color : c, value : 0});
+            p.color_stacks.insert(c.clone(), Stack{color : c, value : 0});
         }
 
         // Populate the draw pile
         p.draw_pile = Playground::full_deck();
+
+        for c in &p.draw_pile{
+            println!("Color : {:?}, Value : {:?}", c.color, c.value);
+        }
 
         p
     }
@@ -43,7 +47,7 @@ impl Playground{
     }
 
     fn full_deck() -> Vec<card::Card>{
-        let deck = Vec::<card::Card>::new();
+        let mut deck = Vec::<card::Card>::new();
         let card_nb = vec![3,2,2,2,1];
 
         for c in card::Color::iter(){
@@ -54,7 +58,7 @@ impl Playground{
                 };
 
                 for _ in 1..=copies{
-                    deck.push(card::Card {color : c, value : card_nb as u8, hints : (None, None)})
+                    deck.push(card::Card {color : c, value : (card_nb+1) as u8, hints : (None, None)})
                 }
             }
         }
