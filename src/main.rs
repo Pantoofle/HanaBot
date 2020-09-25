@@ -54,11 +54,12 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
 }
 
 #[command]
-async fn start(_ctx: &Context, msg: &Message) -> CommandResult{
+async fn start(ctx: &Context, msg: &Message) -> CommandResult{
     let mut game = hanabi::Hanabi::new();
-
     for user in &msg.mentions{
-        let p = player::Player::new(user, msg.channel_id);
+            let p = player::Player::new(user);
+            msg.guild(cache: impl AsRef<Cache>)
+            p.init_channel(ctx.http, msg.guild_id).await;
         game.add_player(p);
     }
 
