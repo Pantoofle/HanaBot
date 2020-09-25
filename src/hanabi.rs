@@ -3,8 +3,6 @@ pub mod playground;
 pub mod card;
 pub mod hand;
 
-use serenity::model::user::User;
-
 pub enum Status<'a>{
     Building,
     Turn(&'a player::Player),
@@ -26,9 +24,7 @@ impl Hanabi<'_>{
         }
     }
 
-    pub fn add_players(&mut self, users : Vec<User>){
-        for u in users{
-            self.players.push(player::Player::new(u));
-        }
+    pub fn add_player(&mut self, player : player::Player){
+        self.players.push(player);
     }
 }

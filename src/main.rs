@@ -14,7 +14,7 @@ use serenity::framework::standard::{
 use std::fs;
 
 #[group]
-#[commands(ping)]
+#[commands(ping, start)]
 struct General;
 
 struct Handler;
@@ -44,7 +44,7 @@ async fn main() {
 }
 
 mod hanabi;
-
+use hanabi::player;
 
 #[command]
 async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
@@ -53,3 +53,14 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
     Ok(())
 }
 
+#[command]
+async fn start(_ctx: &Context, msg: &Message) -> CommandResult{
+    let mut game = hanabi::Hanabi::new();
+
+    for user in &msg.mentions{
+        let p = player::Player::new(user, msg.channel_id);
+        game.add_player(p);
+    }
+
+    Ok(())
+}
