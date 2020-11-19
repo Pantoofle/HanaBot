@@ -9,5 +9,4 @@ edition = "2018"
 [dependencies]
 serenity = "0.9.0-rc.1"
 tokio = { version = "0.2", features = ["macros"] }
-strum = "0.19"
-strum_macros = "0.19"
+strum = {version = "0.19", features = ["derive"]}

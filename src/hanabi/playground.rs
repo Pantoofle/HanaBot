@@ -33,11 +33,6 @@ impl Playground{
 
         // Populate the draw pile
         p.draw_pile = Playground::full_deck();
-
-        for c in &p.draw_pile{
-            println!("Color : {:?}, Value : {:?}", c.color, c.value);
-        }
-
         p
     }
 

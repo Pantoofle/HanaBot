@@ -1,4 +1,4 @@
-use strum_macros::EnumIter;
+use strum::EnumIter;
 
 #[derive(Clone, Copy, EnumIter, PartialEq, Eq, Hash, Debug)]
 pub enum Color{
@@ -17,6 +17,7 @@ pub enum Hint{
 }
 
 impl Hint{
+    // Returns true if the hint applies to a given card
     pub fn applies_to(&self, card:&Card) -> bool{
         match self{
             Hint::Color(c) if *c == card.color => true,
@@ -34,6 +35,7 @@ pub struct Card{
 }
 
 impl Card{
+    // Add an hint to the card
     pub fn add_hint(&mut self, hint:Hint) {
         match hint{
             Hint::Color(c) => {

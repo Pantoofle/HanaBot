@@ -28,7 +28,7 @@ async fn main() {
         .configure(|c| c.prefix("!")) // set the bot's prefix to "~"
         .group(&GENERAL_GROUP);
 
-    // Login with a bot token from the environment
+    // Login with a bot token from a file
     let token = fs::read_to_string("DISCORD_TOKEN").expect("Error when reading the token");
 
     let mut client = Client::new(token)
@@ -49,19 +49,12 @@ use hanabi::player;
 #[command]
 async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
     msg.reply(ctx, "Pong!").await?;
-
     Ok(())
 }
 
 #[command]
 async fn start(ctx: &Context, msg: &Message) -> CommandResult{
-    let mut game = hanabi::Hanabi::new();
-    for user in &msg.mentions{
-            let p = player::Player::new(user);
-            msg.guild(cache: impl AsRef<Cache>)
-            p.init_channel(ctx.http, msg.guild_id).await;
-        game.add_player(p);
-    }
-
+    let mut game = hanabi::Hanabi::new(ctx,msg).await;
+    game.
     Ok(())
 }
