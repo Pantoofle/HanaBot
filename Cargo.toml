@@ -10,3 +10,4 @@ edition = "2018"
 serenity = "0.9.0-rc.1"
 tokio = { version = "0.2", features = ["macros"] }
 strum = {version = "0.19", features = ["derive"]}
+lazy_static = "1.4.0"
